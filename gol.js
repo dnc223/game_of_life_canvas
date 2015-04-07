@@ -17,9 +17,9 @@ var context = canvas.getContext('2d');
 
 canvas.addEventListener("mousedown", getPosition, false);
 
-context.strokeStyle = "#555555";
+context.strokeStyle = "#353535";
 
-
+var requestId;
 
 var s = [];
 for (var k = 0; k < 60; k++) {
@@ -30,13 +30,13 @@ for (var k = 0; k < 60; k++) {
   s.push(row);
 }
 
-
+var step = s;
 
 
 
 function drawBlank(i, j) {
   context.beginPath();
-  context.fillStyle = 'gray';
+  context.fillStyle = '#111';
   context.rect(i*10+1, j*10+1, 9, 9);
   context.fill();
 }
@@ -69,13 +69,12 @@ function drawGrid() {
 drawGrid();
 
 
-function start(step) {
 
 function drawCell(i, j) {
   if (step[i][j] === 0) {
-    var color = "gray";
+    var color = "#111";
   } else {
-    var color = "cyan";
+    var color = "#64CCC5";
   }
   context.beginPath();
   context.fillStyle = color;
@@ -117,10 +116,20 @@ function countNeighbors(i, j) {
   }
 }
 
-function draw() {
-  setTimeout(function() {
-    requestAnimationFrame(draw);
+var fps = 2;
+var now;
+var then = Date.now();
+var interval = 1000/fps;
+var delta;
 
+function draw() {
+  requestId = requestAnimationFrame(draw);
+
+  now = Date.now();
+  delta = now - then;
+
+  if (delta > interval) {
+    then = now - (delta % interval);
     for (var d = 0; d < 60; d++) {
       for (var e = 0; e < 60; e++) {
         drawCell(d, e);
@@ -151,16 +160,30 @@ function draw() {
       }
     }
     step = nextStep;
-  }, 250);
+  }
 }
 
-draw();
 
-}
 $(document).ready(function() {
-  $("body").append('<button class="start">Start</button>');
-  $(".start").on("click", function() {
-    start(s);
+  $("#start").on("click", function(e) {
+    if (!$(this).hasClass("disabled")) {
+      $(this).addClass("disabled");
+      $("#stop").removeClass("disabled");
+      draw();
+    }
+  });
+  $("#stop").on("click", function(e) {
+    if (!$(this).hasClass("disabled")) {
+      $(this).addClass("disabled");
+      $("#start").removeClass("disabled");
+      if (requestId) {
+        window.cancelAnimationFrame(requestId);
+        requestId = undefined;
+      }
+    }
+  });
+  $("#clear").on("click", function(e) {
+
   });
 });
 

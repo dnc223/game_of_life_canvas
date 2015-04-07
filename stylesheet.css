@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 12px;
+  color: #64CCC5;
+  background-color: #111;
+  margin: 0px;
+  padding: 0px;
+}
+
+#header-container {
+  background-color: #111;
+  height: 106px;
+}
+
+#title {
+  margin-left: auto;
+  margin-right: auto;
+  width: 601px;
+  padding-top: 40px;
+}
+
+#gol-controls {
+  margin-left: auto;
+  margin-right: auto;
+  width: 601px;
+  padding-top: 10px;
+  padding-left: 0px;
+}
+
+#gol-board {
+  margin-left: auto;
+  margin-right: auto;
+  width: 601px;
+}
+
+#gol-controls ul {
+  list-style-type: none;
+  width: 601px;
+}
+
+#gol-controls ul li:first-of-type {
+  float: left;
+  padding: 8px 12px 8px 12px;
+  border-left: 1px solid #353535;
+  border-top: 1px solid #353535;
+  border-bottom: 1px solid #353535;
+}
+
+#gol-controls ul li {
+  float: left;
+  padding: 8px 12px 8px 12px;
+  border-right: 1px solid #353535;
+  border-top: 1px solid #353535;
+  border-bottom: 1px solid #353535;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 12px;
+  color: #64CCC5;
+}
+
+a.disabled {
+  color: #333;
+  cursor: default;
+}
