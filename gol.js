@@ -1,6 +1,5 @@
 var canvas = document.getElementById('mycanvas');
 
-
 function getPosition(event) {
   var x = event.x;
   var y = event.y;
@@ -22,17 +21,20 @@ context.strokeStyle = "#353535";
 var requestId;
 
 var s = [];
-for (var k = 0; k < 60; k++) {
-  var row = new Array(60);
-  for (var x = 0; x < row.length; x++) {
-    row[x] = Math.floor(Math.random() * 2);
+var step;
+
+function createRandomGrid() {
+  for (var k = 0; k < 60; k++) {
+    var row = new Array(60);
+    for (var x = 0; x < row.length; x++) {
+      row[x] = Math.floor(Math.random() * 2);
+    }
+    s.push(row);
   }
-  s.push(row);
+  step = s;
 }
 
-var step = s;
-
-
+createRandomGrid();
 
 function drawBlank(i, j) {
   context.beginPath();
@@ -41,11 +43,14 @@ function drawBlank(i, j) {
   context.fill();
 }
 
-for (var r = 0; r < s.length; r++) {
-  for (var q = 0; q < s[r].length; q++) {
-    drawBlank(r, q);
+function drawBlankGrid() {
+  for (var r = 0; r < s.length; r++) {
+    for (var q = 0; q < s[r].length; q++) {
+      drawBlank(r, q);
+    }
   }
 }
+drawBlankGrid();
 
 function drawGrid() {
   for (var i = 0; i <= 600; i += 10) {
@@ -68,8 +73,6 @@ function drawGrid() {
 
 drawGrid();
 
-
-
 function drawCell(i, j) {
   if (step[i][j] === 0) {
     var color = "#111";
@@ -81,10 +84,6 @@ function drawCell(i, j) {
   context.rect(i*10+1, j*10+1, 9, 9);
   context.fill();
 }
-
-
-
-
 
 function countNeighbors(i, j) {
   if (i == 0) {
@@ -163,19 +162,25 @@ function draw() {
   }
 }
 
-
 $(document).ready(function() {
+  $("#stop").addClass("disabled");
+  $("#clear").addClass("disabled");
   $("#start").on("click", function(e) {
+    e.preventDefault();
     if (!$(this).hasClass("disabled")) {
       $(this).addClass("disabled");
+      $("#clear").addClass("disabled");
       $("#stop").removeClass("disabled");
+      then = Date.now();
       draw();
     }
   });
   $("#stop").on("click", function(e) {
+    e.preventDefault();
     if (!$(this).hasClass("disabled")) {
       $(this).addClass("disabled");
       $("#start").removeClass("disabled");
+      $("#clear").removeClass("disabled");
       if (requestId) {
         window.cancelAnimationFrame(requestId);
         requestId = undefined;
@@ -183,7 +188,11 @@ $(document).ready(function() {
     }
   });
   $("#clear").on("click", function(e) {
-
+    e.preventDefault();
+    if (!$(this).hasClass("disabled")) {
+      $(this).addClass("disabled");
+      drawBlankGrid();
+      createRandomGrid();
+    }
   });
 });
-
