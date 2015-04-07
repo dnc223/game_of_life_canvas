@@ -45,7 +45,6 @@ body {
 
 #gol-controls ul li:first-of-type {
   float: left;
-  padding: 8px 12px 8px 12px;
   border-left: 1px solid #353535;
   border-top: 1px solid #353535;
   border-bottom: 1px solid #353535;
@@ -53,13 +52,13 @@ body {
 
 #gol-controls ul li {
   float: left;
-  padding: 8px 12px 8px 12px;
   border-right: 1px solid #353535;
   border-top: 1px solid #353535;
   border-bottom: 1px solid #353535;
 }
 
 a {
+  padding: 8px 12px 8px 12px;
   display: block;
   text-decoration: none;
   font-family: "Helvetica", "Arial", sans-serif;
