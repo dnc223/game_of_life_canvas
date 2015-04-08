@@ -16,7 +16,7 @@ var context = canvas.getContext('2d');
 
 canvas.addEventListener("mousedown", getPosition, false);
 
-context.strokeStyle = "#353535";
+context.strokeStyle = "#444";
 
 var requestId;
 
@@ -38,7 +38,7 @@ createRandomGrid();
 
 function drawBlank(i, j) {
   context.beginPath();
-  context.fillStyle = '#111';
+  context.fillStyle = '#252525';
   context.rect(i*10+1, j*10+1, 9, 9);
   context.fill();
 }
@@ -75,7 +75,7 @@ drawGrid();
 
 function drawCell(i, j) {
   if (step[i][j] === 0) {
-    var color = "#111";
+    var color = "#252525";
   } else {
     var color = "#64CCC5";
   }

@@ -7,13 +7,13 @@ body {
   font-family: "Helvetica", "Arial", sans-serif;
   font-size: 12px;
   color: #64CCC5;
-  background-color: #111;
+  background-color: #252525;
   margin: 0px;
   padding: 0px;
 }
 
 #header-container {
-  background-color: #111;
+  background-color: #252525;
   height: 106px;
 }
 
@@ -46,16 +46,16 @@ body {
 
 #gol-controls ul li:first-of-type {
   float: left;
-  border-left: 1px solid #353535;
-  border-top: 1px solid #353535;
-  border-bottom: 1px solid #353535;
+  border-left: 1px solid #444;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
 }
 
 #gol-controls ul li {
   float: left;
-  border-right: 1px solid #353535;
-  border-top: 1px solid #353535;
-  border-bottom: 1px solid #353535;
+  border-right: 1px solid #444;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
 }
 
 a {
@@ -68,6 +68,6 @@ a {
 }
 
 a.disabled {
-  color: #333;
+  color: #444;
   cursor: default;
 }
