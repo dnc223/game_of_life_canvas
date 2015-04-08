@@ -35,6 +35,7 @@ body {
 #gol-board {
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 40px;
   width: 601px;
 }
 
